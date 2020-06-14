@@ -1,0 +1,16 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="row">
+    <div class="col">
+        <div class="card card-body">
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{form}}
+                <br>
+                <input class="btn btn-sm btn-primary" type="submit" name="submit">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

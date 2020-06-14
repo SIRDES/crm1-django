@@ -1,0 +1,34 @@
+{% extends 'index.html' %}
+{% block content %}
+<br>
+{% include 'status.html' %}
+<br>
+
+    <h2>Last 5 Orders</h2><hr>
+    <div class="card card-body table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Buyer</th>
+                    <th>Product</th>
+                    <th> Date ordered</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td>{{order.customer.name}}</td>
+                            <td>{{order.product}}</td>
+                            <td>{{order.date_created}}</td>
+                            <td>{{order.status}}</td>
+                        </tr>
+
+                    {% endfor %}
+                   
+                </tbody>
+        </table>
+    </div>
+</div>
+<br>
+{% endblock %}

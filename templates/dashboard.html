@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+    {% extends "index.html" %}
+    {% block content %}
+    {% include "status.html" %}
+    <div class="row row-responsive ml-1 mr-1">
+        <div class="col-md-5">
+            <h2>Customers</h2><hr>
+            <div class="card card-body">
+                <a href="{% url 'createCustomer' %}" class="btn btn-primary btn-block">create customers</a><br>
+                <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <td></td>
+                                <th>Customers</th>
+                                <th>Phone</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for customer in customers %}
+                            <tr>
+                                <td><a href="{% url 'customers' customer.id %}" class="btn btn-sm btn-info">view</a></td>
+                                <td>{{customer.name}}</td>
+                                <td>{{customer.phone}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-7">
+            <h2>Last 5 Orders</h2><hr>
+            <div class="card card-body">
+                <a href="{% url 'create_order' %}" class="btn btn-primary btn-block">create orders</a><br>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Buyer</th>
+                            <th>Product</th>
+                            <th> Date ordered</th>
+                            <th>Status</th>
+                            <th> Update</th>
+                            <th> Remove</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
+                                <tr>
+                                    <td>{{order.customer.name}}</td>
+                                    <td>{{order.product}}</td>
+                                    <td>{{order.date_created}}</td>
+                                    <td>{{order.status}}</td>
+                                    <td><a href="{% url 'updateOrder' order.id %}" class="btn btn-sm btn-primary">update</a></td>
+                                    <td><a href="{% url 'deleteOrder' order.id %}" class="btn btn-sm btn-danger">delete</a></td>
+                                </tr>
+
+                            {% endfor %}
+                           
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <br>
+    {% endblock %}
